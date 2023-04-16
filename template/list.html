@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{user.username}}s to-do list</h1>
+
+  
+
+<div class="col-md-4">
+  <div class="profile-img">
+    <img id="image" src="{{ user.profile.image.url }}" alt="" height="150" width="150"/>
+      
+  </div>
+</div>
+
+{% for post in posts %}
+{% if user.is_authenticated and post.created_by == user %}
+
+
+<div class="list-group">
+
+    <a href="{% url 'post_detail' post.id %}" class="list-group-item list-group-item-action">{{post}} </a>
+  </div>
+
+    {% endif %}
+
+{% endfor %}
+
+{% endblock content %}
